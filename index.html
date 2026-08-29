@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive SQL assessment for data analyst candidates using synthetic medical claims and membership data.">
+  <title>SQL Claims Assessment</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">SQL</div>
+      <div><strong>Claims SQL Lab</strong><small>Data Analyst Assessment</small></div>
+    </div>
+    <div class="question-nav">
+      <button id="previousQuestion" class="icon-button" aria-label="Previous question">‹</button>
+      <span id="questionCounter">Question 1 / 10</span>
+      <button id="nextQuestion" class="icon-button" aria-label="Next question">›</button>
+    </div>
+    <div class="header-actions">
+      <span id="scoreDisplay">Score: 0 / 10</span>
+      <button id="themeToggle" class="secondary-button" aria-label="Toggle dark mode">☾ Dark</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="brief-panel">
+      <article class="question-card">
+        <div class="eyebrow"><span id="questionNumber">Q1</span><span id="difficultyBadge" class="badge easy">Easy</span></div>
+        <h1 id="questionTitle"></h1>
+        <p id="questionDescription" class="lead"></p>
+      </article>
+
+      <section class="schema-section">
+        <div class="section-heading">
+          <div><span class="section-icon">▦</span><strong> Schema & sample data</strong></div>
+          <button id="resetAssessment" class="text-button">Reset assessment</button>
+        </div>
+        <div class="tabs" role="tablist">
+          <button class="schema-tab active" data-table="claims">claims</button>
+          <button class="schema-tab" data-table="memberships">memberships</button>
+        </div>
+        <div id="schemaTable" class="schema-table-wrap"></div>
+        <details class="sample-data">
+          <summary>Preview sample rows</summary>
+          <div id="sampleDataTable" class="data-grid-wrap"></div>
+        </details>
+      </section>
+    </section>
+
+    <div id="panelResizeHandle" class="panel-resizer" role="separator" aria-label="Resize panels" aria-orientation="vertical"></div>
+
+    <section class="work-panel">
+      <div class="editor-toolbar">
+        <span class="dialect">SQLite</span>
+        <span class="shortcut">Ctrl/Cmd + Enter to run</span>
+        <button id="runQuery" class="secondary-button">▶ Run query</button>
+        <button id="checkAnswer" class="primary-button">✓ Check answer</button>
+      </div>
+      <div id="editor" aria-label="SQL editor"></div>
+      <div class="status-bar">
+        <span id="databaseStatus">Loading in-browser database…</span>
+        <span id="executionTime"></span>
+      </div>
+      <section class="output-panel">
+        <div class="output-tabs">
+          <button class="output-tab active" data-output="results">Query output</button>
+          <button class="output-tab" data-output="feedback">Evaluation</button>
+        </div>
+        <div id="resultsView" class="output-view active">
+          <div class="empty-state"><strong>No query executed yet</strong><span>Write SQL and select “Run query”.</span></div>
+        </div>
+        <div id="feedbackView" class="output-view">
+          <div class="empty-state"><strong>No answer checked yet</strong><span>Select “Check answer” when the result looks correct.</span></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.36.0/src-min-noconflict/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.36.0/src-min-noconflict/ext-language_tools.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sql.js@1.11.0/dist/sql-wasm.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
